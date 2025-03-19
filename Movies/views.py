@@ -5,6 +5,7 @@ from .serializers import MovieDataSerializer
 
 # Create your views here.
 
+
 class MovieDataView(viewsets.ModelViewSet):
     """ View for MovieData """
     queryset = MovieData.objects.all()
@@ -15,6 +16,7 @@ class ActionMovieDataView(viewsets.ModelViewSet):
     """ View for Action MovieData """
     queryset = MovieData.objects.filter(typ='action')
     serializer_class = MovieDataSerializer
+
 
 class cartoonMovieDataView(viewsets.ModelViewSet):
     """ View for cartoon MovieData """

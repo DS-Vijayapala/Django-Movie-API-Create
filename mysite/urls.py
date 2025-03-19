@@ -15,17 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path, include
 from rest_framework import routers
-from Movies.views import MovieDataView, ActionMovieDataView , cartoonMovieDataView
+from Movies.views import MovieDataView, ActionMovieDataView, cartoonMovieDataView
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.SimpleRouter()
-router.register('movies', MovieDataView , basename='movie')
-router.register('action', ActionMovieDataView , basename='action')
-router.register('cartoon', cartoonMovieDataView , basename='cartoon')
+router.register('movies', MovieDataView, basename='movie')
+router.register('action', ActionMovieDataView, basename='action')
+router.register('cartoon', cartoonMovieDataView, basename='cartoon')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
