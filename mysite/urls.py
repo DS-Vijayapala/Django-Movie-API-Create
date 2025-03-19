@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from rest_framework import routers
-from Movies.views import MovieDataView
+from Movies.views import MovieDataView, ActionMovieDataView , cartoonMovieDataView
 
-router = routers.DefaultRouter()
-router.register('movies', MovieDataView)
+router = routers.SimpleRouter()
+router.register('movies', MovieDataView , basename='movie')
+router.register('action', ActionMovieDataView , basename='action')
+router.register('cartoon', cartoonMovieDataView , basename='cartoon')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
